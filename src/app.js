@@ -8,10 +8,10 @@ var UI = require('ui');
 var Vector2 = require('vector2');
 
 var main = new UI.Card({
-  title: 'Pebble.js',
+  title: 'TwoOfHearts',
   icon: 'images/menu_icon.png',
-  subtitle: 'Hello World! - VANSHIL',
-  body: 'Press any button. - Vanshil - Brandon'
+  subtitle: 'Meet THE One',
+  body: 'Press any Button'
 });
 
 main.show();
@@ -42,7 +42,7 @@ main.on('click', 'select', function(e) {
     position: new Vector2(0, 50),
     size: new Vector2(144, 30),
     font: 'gothic-24-bold',
-    text: 'Text Anywhere!',
+    icon: 'images/menu_icon.png',
     textAlign: 'center'
   });
   wind.add(textfield);
