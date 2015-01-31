@@ -7,7 +7,7 @@
 // This is an example of using an image with Image and Window
 var UI = require('ui');
 var Vector2 = require('vector2');
-var curImgPos = 1;
+var curImgPos = 0;
 
 var imageStrs = ["images/SmallHeart.png" , "images/BigHeart.png" , "images/BiggestHeart.png"];
 
@@ -18,6 +18,38 @@ var heart = new UI.Image({
   size: new Vector2(144, 168),
   image: imageStrs[curImgPos]
 });
+
+var growing;
+
+  growing = setInterval(grow, 2000);
+  
+
+
+function grow() {
+  console.log("growin");
+  heart.remove();
+  heart = new UI.Image({
+    position: new Vector2(0, 0),
+    size: new Vector2(144, 168),
+    image: imageStrs[curImgPos+1]
+ });
+
+  wind.add(heart);
+  wind.show();
+  
+  setTimeout(function() {
+    console.log("shrinkin");
+    heart.remove();
+      heart = new UI.Image({
+      position: new Vector2(0, 0),
+      size: new Vector2(144, 168),
+      image: imageStrs[curImgPos]
+    });
+    wind.add(heart);
+    wind.show();
+},1000);
+}  
+
 
 wind.add(heart);
 
