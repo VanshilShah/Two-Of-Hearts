@@ -11,7 +11,7 @@ var main = new UI.Card({
   title: 'Pebble.js',
   icon: 'images/menu_icon.png',
   subtitle: 'Hello World!',
-  body: 'Press any button. - Vanshil'
+  body: 'Press any button. - Vanshil - Brandon'
 });
 
 main.show();
