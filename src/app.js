@@ -1,58 +1,75 @@
-/**
+/*
  * Welcome to Pebble.js!
  *
  * This is where you write your app.
  */
 
+// This is an example of using an image with Image and Window
 var UI = require('ui');
 var Vector2 = require('vector2');
+var curImgPos = 1;
 
-var main = new UI.Card({
-  title: 'TwoOfHearts',
-  icon: 'images/menu_icon.png',
-  subtitle: 'Meet THE One',
-  body: 'Press any Button'
+var imageStrs = ["images/SmallHeart.png" , "images/BigHeart.png" , "images/BiggestHeart.png"];
+
+
+var wind = new UI.Window({ fullscreen: true });
+var heart = new UI.Image({
+  position: new Vector2(0, 0),
+  size: new Vector2(144, 168),
+  image: imageStrs[curImgPos]
 });
 
-main.show();
+wind.add(heart);
 
-main.on('click', 'up', function(e) {
-  var menu = new UI.Menu({
-    sections: [{
-      items: [{
-        title: 'Pebble.js',
-        icon: 'images/menu_icon.png',
-        subtitle: 'Can do Menus'
-      }, {
-        title: 'Second Item',
-        subtitle: 'Subtitle Text'
-      }]
-    }]
-  });
-  menu.on('select', function(e) {
-    console.log('Selected item #' + e.itemIndex + ' of section #' + e.sectionIndex);
-    console.log('The item is titled "' + e.item.title + '"');
-  });
-  menu.show();
+//var rect = new UI.Rect({ size: new Vector2(40, 40) });
+//wind.add(rect);
+//wind.pic('images/Heart.png');
+
+wind.show();
+
+
+wind.on('click', 'up', function(e) {
+  console.log(curImgPos);
+  if (curImgPos < 2) {
+    
+
+      curImgPos++;
+      heart.remove();
+  heart = new UI.Image({
+    position: new Vector2(0, 0),
+    size: new Vector2(144, 168),
+    image: imageStrs[curImgPos]
+
 });
-
-main.on('click', 'select', function(e) {
-  var wind = new UI.Window();
-  var textfield = new UI.Text({
-    position: new Vector2(0, 50),
-    size: new Vector2(144, 30),
-    font: 'gothic-24-bold',
-    icon: 'images/menu_icon.png',
-    textAlign: 'center'
-  });
-  wind.add(textfield);
+      wind.add(heart);
   wind.show();
+  }
+
+
+
+
 });
 
-main.on('click', 'down', function(e) {
-  var card = new UI.Card();
-  card.title('A Card');
-  card.subtitle('Is a Window');
-  card.body('The simplest window type in Pebble.js.');
-  card.show();
+wind.on('click', 'select', function(e) {
+
+  console.log(curImgPos);
+});
+
+wind.on('click', 'down', function(e) {
+    console.log(curImgPos);
+  if (curImgPos > 0) {
+      curImgPos--;
+      heart.remove();
+    heart = new UI.Image({
+      position: new Vector2(0, 0),
+      size: new Vector2(144, 168),
+      image: imageStrs[curImgPos]
+
+    });
+            wind.add(heart);
+  wind.show();
+  }
+
+
+
 });
