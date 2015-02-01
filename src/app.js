@@ -11,18 +11,32 @@ var freq = 800;
 var Vibe = require('ui/vibe');
 var ajax = require('ajax');
 var distance = 1000000;
+var UI = require('ui');
+var Vector2 = require('vector2');
+var wind = new UI.Window({ fullscreen: true });
 
 // GEOLOCATION TEST
 function showLocation(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
+  console.log("hereeeee");
+  
+  var textfield = new UI.Text({
+   position: new Vector2(0, 0),
+   size: new Vector2(144, 168),
+   font: 'gothic-18-bold',
+   text: " " + longitude + " " + latitude 
+  });
+  
+  wind.add(textfield);
+  wind.show();
   console.log("Latitude : " + latitude + " Longitude: " + longitude);
 }
 
 function errorHandler(err) {
   if(err.code == 1) {
     
-    log("Error: Access is denied!");
+    console.log("Error: Access is denied!");
   }else if( err.code == 2) {
     console.log("Error: Position is unavailable!");
   }
@@ -34,6 +48,7 @@ function getLocation(){
       var options = {timeout:60000};
       navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
      // POST TEST
+     /*
      ajax(
       {
         method: 'POST',
@@ -47,11 +62,12 @@ function getLocation(){
       function(error){
         console.log('POST failure');
       }
-    );
+    );*/
 
    } else{
       console.log("Sorry, browser does not support geolocation!");
    }
+   
 }
 
 
@@ -73,7 +89,8 @@ function getMate(){
 //   }
 // );
   
-  console.log("getting mate");
+//  console.log("getting mate");
+  /*
   ajax(
     {
       url: 'http://www.example.com/?name=value',
@@ -89,13 +106,13 @@ function getMate(){
       console.log('The ajax request failed: ' + error);
     }
   );
+*/
 }
 
 if (freq <= 1000) {
   Vibe.vibrate(1000);
 }
-var UI = require('ui');
-var Vector2 = require('vector2');
+
 
 var imageStrs = ["images/SmallHeart.png" , "images/BigHeart.png" , "images/BiggestHeart.png"];
 
@@ -123,7 +140,7 @@ var bigHeart = new UI.Image({
 // init images array
 var images = [smallHeart, bigHeart, biggestHeart];
 // create root window
-var wind = new UI.Window({ fullscreen: true });
+
 // init cur heart
 var heart;
 
@@ -185,7 +202,7 @@ wind.on('click', 'down', function(e) {
 // THESE BITCHES SET INTERVALS OK?
 setInterval(heartBeat, freq);
 setInterval(getLocation, 2000);
-setInterval(getMate, 2000);
+//setInterval(getMate, 2000);
 
 
 

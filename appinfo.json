@@ -30,13 +30,8 @@
                 "type": "font"
             },
             {
-                "file": "images/SmallestHeart.png",
-                "name": "IMAGES_SMALLESTHEART_PNG",
-                "type": "png"
-            },
-            {
-                "file": "images/BiggestHeart.png",
-                "name": "IMAGES_BIGGESTHEART_PNG",
+                "file": "images/SmallHeart.png",
+                "name": "IMAGES_SMALLHEART_PNG",
                 "type": "png"
             },
             {
@@ -45,8 +40,13 @@
                 "type": "png"
             },
             {
-                "file": "images/SmallHeart.png",
-                "name": "IMAGES_SMALLHEART_PNG",
+                "file": "images/BiggestHeart.png",
+                "name": "IMAGES_BIGGESTHEART_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/SmallestHeart.png",
+                "name": "IMAGES_SMALLESTHEART_PNG",
                 "type": "png"
             }
         ]
