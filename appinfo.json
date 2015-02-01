@@ -30,6 +30,11 @@
                 "type": "font"
             },
             {
+                "file": "images/SmallestHeart.png",
+                "name": "IMAGES_SMALLESTHEART_PNG",
+                "type": "png"
+            },
+            {
                 "file": "images/BiggestHeart.png",
                 "name": "IMAGES_BIGGESTHEART_PNG",
                 "type": "png"
