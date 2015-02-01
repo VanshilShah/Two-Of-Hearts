@@ -7,7 +7,7 @@
 // This is an example of using an image with Image and Window
 
 
-var freq = 800;
+var freq = 2000;
 var Vibe = require('ui/vibe');
 var ajax = require('ajax');
 var distance = 1000000;
@@ -15,30 +15,32 @@ var UI = require('ui');
 var Vector2 = require('vector2');
 var wind = new UI.Window({ fullscreen: true });
 
+var xlat = 43.659698;
+var xlong =  -79.396926;
+
+var dist = 13337;
+
+
 // GEOLOCATION TEST
 function showLocation(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-  console.log("hereeeee");
   
-  var textfield = new UI.Text({
-   position: new Vector2(0, 0),
-   size: new Vector2(144, 168),
-   font: 'gothic-18-bold',
-   text: " " + longitude + " " + latitude 
-  });
+  dist = Math.abs(xlat - latitude) + Math.abs(xlong - longitude);
+  freq = dist*10000000/9+800;
+
+  //console.log(freq + "FREQQQQQQQQQQQQQQ");
   
-  wind.add(textfield);
-  wind.show();
-  console.log("Latitude : " + latitude + " Longitude: " + longitude);
+
+  console.log("Dist = " + dist);
 }
 
 function errorHandler(err) {
   if(err.code == 1) {
     
-    console.log("Error: Access is denied!");
+  //console.log("Error: Access is denied!");
   }else if( err.code == 2) {
-    console.log("Error: Position is unavailable!");
+    //console.log("Error: Position is unavailable!");
   }
 }
 function getLocation(){
@@ -65,7 +67,7 @@ function getLocation(){
     );*/
 
    } else{
-      console.log("Sorry, browser does not support geolocation!");
+      //console.log("Sorry, browser does not support geolocation!");
    }
    
 }
@@ -110,7 +112,7 @@ function getMate(){
 }
 
 if (freq <= 1000) {
-  Vibe.vibrate(1000);
+  Vibe.vibrate(10000);
 }
 
 
@@ -146,6 +148,7 @@ var heart;
 
 // helper function to replace the heart image
 var setHeart = function(imgPos) {
+  //console.log('beat');
   if (heart) {
     heart.remove();
   }
@@ -179,21 +182,26 @@ function heartBeat() {
 //wind.pic('images/Heart.png');
 
 wind.on('click', 'up', function(e) {
+  /*
   if (curImgPos < 2) {
     curImgPos++;
     setHeart(curImgPos);
   }
+  */
 });
 
 wind.on('click', 'select', function(e) {
-  //console.log(curImgPos);
+
+  
 });
 
 wind.on('click', 'down', function(e) {
+  /*
   if (curImgPos > 0) {
       curImgPos--;
       setHeart(curImgPos);
   }
+  */
 });
 
 
@@ -201,8 +209,8 @@ wind.on('click', 'down', function(e) {
 
 // THESE BITCHES SET INTERVALS OK?
 setInterval(heartBeat, freq);
-setInterval(getLocation, 2000);
-//setInterval(getMate, 2000);
+setInterval(getLocation, 5000);
+// setInterval(getMate, 2000);
 
 
 
